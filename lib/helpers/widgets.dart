@@ -58,7 +58,7 @@ class OptionsInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      // crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SvgPicture.asset(image),
         const SizedBox(
@@ -66,6 +66,7 @@ class OptionsInfo extends StatelessWidget {
         ),
         Text(
           title,
+          textAlign: TextAlign.center,
           style: const TextStyle(color: kContainerText, fontSize: 25),
         ),
         const SizedBox(
@@ -73,6 +74,7 @@ class OptionsInfo extends StatelessWidget {
         ),
         Text(
           info,
+          textAlign: TextAlign.center,
           style: const TextStyle(color: kGrey, fontSize: 18),
         )
       ],
@@ -81,44 +83,59 @@ class OptionsInfo extends StatelessWidget {
 }
 
 class Articles extends StatelessWidget {
-  final Map<String, dynamic> article;
-  const Articles({Key? key, required this.article}) : super(key: key);
+  final String image;
+  final String written;
+  final String title;
+  final String desc;
+  const Articles(
+      {Key? key,
+      required this.image,
+      required this.written,
+      required this.title,
+      required this.desc})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 400,
-      width: 320,
-      padding: const EdgeInsets.only(left: 15, right: 15, bottom: 15),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15), color: kBackground),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Container(
+          width: double.infinity,
+          height: 200,
           decoration: BoxDecoration(
-            image: DecorationImage(
-                fit: BoxFit.cover,
-                image: AssetImage("assets/$article['image']")),
+              borderRadius: BorderRadius.circular(15),
+              image:
+                  DecorationImage(image: AssetImage(image), fit: BoxFit.cover)),
+        ),
+        Padding(
+          padding:
+              const EdgeInsets.only(left: 15, right: 15, top: 15, bottom: 15),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(
+                height: 15,
+              ),
+              Text(
+                written,
+                style: const TextStyle(color: kGrey, fontSize: 12),
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              Text(
+                title,
+                style: const TextStyle(color: kContainerText, fontSize: 21),
+              ),
+              const SizedBox(
+                height: 25,
+              ),
+              Text(desc, style: const TextStyle(color: kGrey, fontSize: 16)),
+            ],
           ),
         ),
-        const SizedBox(
-          height: 15,
-        ),
-        Text(
-          article['written'],
-          style: const TextStyle(color: kGrey, fontSize: 12),
-        ),
-        const SizedBox(
-          height: 15,
-        ),
-        Text(
-          article['title'],
-          style: const TextStyle(color: kContainerText, fontSize: 21),
-        ),
-        const SizedBox(
-          height: 25,
-        ),
-        Text(article['desc'],
-            style: const TextStyle(color: kGrey, fontSize: 18)),
       ]),
     );
   }
