@@ -43,7 +43,8 @@ class _HomePageState extends State<HomePage> {
               // ),
               FourthTab(
                   fourthTabDesktop: FourthTabDesktop(),
-                  fourthTabMobile: FourthTabMobile())           ],
+                  fourthTabMobile: FourthTabMobile())
+            ],
           ),
         ),
       ),
